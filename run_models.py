@@ -1,5 +1,3 @@
-# run_models.py
-
 import argparse
 import cv2
 import numpy as np
