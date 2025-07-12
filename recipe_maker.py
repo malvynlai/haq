@@ -3,6 +3,7 @@ from tkinter import ttk, filedialog
 from tkinterdnd2 import DND_FILES, TkinterDnD
 from PIL import Image, ImageTk
 import os
+import sys
 import markdown2
 from tkinterweb import HtmlFrame
 import threading
@@ -14,13 +15,32 @@ from itertools import cycle
 # Import your main function from your local module
 from run_models import main
 
+# --- NEW: Helper function to find assets in a packaged app ---
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 class ImageDropApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Recipe Maker")
-        self.app_icon = tk.PhotoImage(file='chef-hat-black.png')
-        self.root.iconphoto(True, self.app_icon)
-        self.root.minsize(450, 450)
+        
+        # --- UPDATED: Use the resource_path function to find the icon ---
+        try:
+            icon_path = resource_path('chef-hat.png')
+            self.app_icon = tk.PhotoImage(file=icon_path)
+            self.root.iconphoto(True, self.app_icon)
+        except tk.TclError:
+            print("Warning: Could not load 'chef-hat.png'. Make sure it's in the correct directory and is a valid PNG file.")
+
+        self.root.minsize(450, 500)
         self.root.geometry("550x550")
         self.root.configure(bg="#2E2E2E")
 
@@ -29,7 +49,8 @@ class ImageDropApp:
         self.loading_animation_id = None
         self.spinner = cycle(['|', '/', '—', '\\'])
         
-        self.chef_hat_icon_b64 = self.load_icon_as_base64("chef-hat.png")
+        # --- UPDATED: Use the resource_path function here as well ---
+        self.chef_hat_icon_b64 = self.load_icon_as_base64(resource_path("chef-hat.png"))
 
         # Style the widgets
         style = ttk.Style()
@@ -90,6 +111,7 @@ class ImageDropApp:
 
     def load_icon_as_base64(self, icon_path):
         """Loads a PNG icon and converts it to a Base64 string for embedding in HTML."""
+        if not icon_path: return None
         try:
             with Image.open(icon_path) as icon_img:
                 icon_img.thumbnail((32, 32))
@@ -97,7 +119,7 @@ class ImageDropApp:
                     icon_img.save(buffer, 'PNG')
                     return base64.b64encode(buffer.getvalue()).decode('utf-8')
         except FileNotFoundError:
-            print(f"Warning: Icon file '{icon_path}' not found. Loading screen will not show icon.")
+            print(f"Warning: Icon file at '{icon_path}' not found. Loading screen will not show icon.")
             return None
         except Exception as e:
             print(f"Error loading icon: {e}")

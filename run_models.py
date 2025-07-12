@@ -10,7 +10,7 @@ def main(image_filename):
     Returns:
         str: The output text generated from the image.
     """
-    time.sleep(10)  # Simulate some processing time
+    time.sleep(5)  # Simulate some processing time
     return """# 🥣 Savory Kale & Egg Breakfast Bowl with Orange-Cucumber Yogurt Sauce
 
 A fresh, savory breakfast (or light lunch) using milk, oranges, kale, eggs, and cucumbers.
