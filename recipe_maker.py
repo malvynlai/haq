@@ -10,6 +10,7 @@ import queue
 import base64
 import io
 from itertools import cycle
+import tkinter as tk # Import the standard tkinter library
 
 # Import your main function from your local module
 from run_models import main
@@ -30,8 +31,18 @@ class ImageDropApp:
         self.root = root
         self.main_tk_root = main_tk_root
         self.root.title("Recipe Maker")
-        self.root.geometry("600x650")
-        self.root.minsize(500, 550)
+
+        # --- FIX: Set the window icon for the title bar ---
+        try:
+            # icon_path = resource_path('chef-hat.png')
+            title_icon_path = resource_path('chef-hat-black.png')
+            self.app_icon = tk.PhotoImage(file=title_icon_path)
+            self.root.iconphoto(True, self.app_icon)
+        except tk.TclError:
+            print("Warning: Could not load 'chef-hat-black.png' for title bar icon.")
+
+        self.root.geometry("550x550")
+        self.root.minsize(500, 500)
 
         # --- Setup for threading and animation ---
         self.result_queue = queue.Queue()
@@ -61,12 +72,12 @@ class ImageDropApp:
         self.upload_button.pack(side="left")
 
         # --- HTML Frame for Rendering ---
-        self.html_container = customtkinter.CTkFrame(self.root, fg_color="#2B2B2B")
+        self.html_container = tk.Frame(self.root, bg="#2B2B2B", bd=0, highlightthickness=0)
         self.html_container.grid(row=1, column=0, padx=20, pady=10, sticky="nsew")
         
         self.output_html = HtmlFrame(self.html_container, vertical_scrollbar="true")
         self.output_html.pack(fill="both", expand=True)
-        self.render_markdown("<h1>Drop image here</h1>")
+        self.render_markdown("<h3>Drop image here</h3>")
 
         # --- FIX: Create a dedicated frame for the loading animation ---
         self.loading_frame = customtkinter.CTkFrame(self.root, fg_color="#2B2B2B")
@@ -178,7 +189,8 @@ class ImageDropApp:
         self.upload_button.configure(state="normal")
 
     def drop_enter(self, event):
-        self.drop_feedback_label.place(relx=0.5, rely=0.5, anchor="center")
+        # --- FIX: Use relwidth and relheight to make the label fill its container ---
+        self.drop_feedback_label.place(relwidth=1, relheight=1)
 
     def drop_leave(self, event):
         self.drop_feedback_label.place_forget()
@@ -227,6 +239,7 @@ class ImageDropApp:
                     word-wrap: break-word;
                     margin: 0;
                     padding: 15px;
+                    font-size: 40px;
                 }}
                 h1, h2, h3 {{
                     color: #FFFFFF;
