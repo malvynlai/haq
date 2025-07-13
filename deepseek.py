@@ -261,7 +261,7 @@ def run_recipe_generation(ingredient_list: str) -> str:
     tps = np.round((max_tokens / elapsed), 2)
     print(f"\nTokens Per Second: {tps}")
     output_text = tokenizer.decode(generated_ids, skip_special_tokens=True)
-    return output_text
+    return output_text.split('</think>')[0].strip() 
 
 if __name__=='__main__':
     run_recipe_generation(['chicken'])
