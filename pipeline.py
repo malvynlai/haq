@@ -5,10 +5,9 @@ from pathlib import Path
 from typing import List, Tuple
 import cv2 as cv
 import pickle
-import matplotlib.pyplot as plt
 
 
-def main(filepath):
+def available_ingredients(filepath):
     root_dir = Path.cwd()
     onnxruntime_dir = Path(ort.__file__).parent
 
@@ -122,3 +121,6 @@ def main(filepath):
 
     item_label_list = list(set(item_label_list))
     return item_label_list
+
+if __name__ == '__main__':
+    print(available_ingredients('darrien-staton-unsplash.jpg'))
