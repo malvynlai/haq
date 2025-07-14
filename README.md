@@ -40,13 +40,13 @@ Many people struggle with:
 
 - **Hardware:** Snapdragon X Elite
 - **Libraries:** 
- - `onnxruntime-qnn` (for running the models)
- - `customtkinter`, `tkinterdnd2`, `tkinterweb`, `markdown2`, `tkinter` (for UI)
- - `opencv-python`, `pillow` (for image processing)
+    - `onnxruntime-qnn` (for running the models)
+    - `customtkinter`, `tkinterdnd2`, `tkinterweb`, `markdown2`, `tkinter` (for UI)
+    - `opencv-python`, `pillow` (for image processing)
 - **Models Used:**
- - Google Inception V3 (Image Recognition)
- - DeepSeek R1 Distill Qwen 1.5B (Language Model)
- - YOLO X (Object Detection)
+    - Google Inception V3 (Image Recognition)
+    - DeepSeek R1 Distill Qwen 1.5B (Language Model)
+    - YOLO X (Object Detection)
 
 ## ⚙️ Setup Instructions
 
