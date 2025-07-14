@@ -63,7 +63,7 @@ Create a folder called `models` and put the following in it:
 
 ### To avoid setting up the environment
 
-We also provide a Windows executable for the ARM environment [here](https://drive.google.com/drive/folders/1hCopYw7rMdeOm3zV6NC2do9orzpKqAMf)
+We also provide a Windows executable for the ARM environment [here](https://drive.google.com/drive/folders/1odLu2Vyv1BrTvORCcg-MO3by8AnlE16x)
 
 You still need to download the models and put the executable into this repository, 
 but it lets you avoid setting up the `python` environments.
