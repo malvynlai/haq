@@ -55,6 +55,19 @@ Many people struggle with:
 - Python 3.13.3
 - Snapdragon X Elite device with NPU support
 
+### Downloading models
+Create a folder called `models` and put the following in it:
+- Download the [Inception v3 model](https://aihub.qualcomm.com/compute/models/inception_v3?domain=Computer+Vision&useCase=Image+Classification)
+- Download the [Yolo-X model](https://aihub.qualcomm.com/compute/models/yolox?domain=Computer+Vision&useCase=Object+Detection)
+- Download the `qnn-deepseek-r1-distill-qwen-1.5b.zip` file from [https://drive.google.com/drive/folders/1hCopYw7rMdeOm3zV6NC2do9orzpKqAMf](https://drive.google.com/drive/folders/1hCopYw7rMdeOm3zV6NC2do9orzpKqAMf) and unpack it into your `models` folder
+
+### To avoid setting up the environment
+
+We also provide a Windows executable for the ARM environment [here](https://drive.google.com/drive/folders/1hCopYw7rMdeOm3zV6NC2do9orzpKqAMf)
+
+You still need to download the models and put the executable into this repository, 
+but it lets you avoid setting up the `python` environments.
+
 ---
 
 ## Impact
