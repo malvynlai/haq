@@ -40,8 +40,9 @@ Many people struggle with:
 
 - **Hardware:** Snapdragon X Elite
 - **Libraries:** 
- - `onnxruntime`
- - `Tkinter` (for UI)
+ - `onnxruntime-qnn` (for running the models)
+ - `customtkinter`, `tkinterdnd2`, `tkinterweb`, `markdown2`, `tkinter` (for UI)
+ - `opencv-python`, `pillow` (for image processing)
 - **Models Used:**
  - Google Inception V3 (Image Recognition)
  - DeepSeek R1 Distill Qwen 1.5B (Language Model)
@@ -51,9 +52,8 @@ Many people struggle with:
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.13.3
 - Snapdragon X Elite device with NPU support
-- Qualcomm AI Hub SDK installed and configured
 
 ---
 
